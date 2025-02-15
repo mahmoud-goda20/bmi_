@@ -2,21 +2,19 @@ import 'package:bmi_/result.dart';
 import 'package:bmi_/wedgit/age_counter.dart';
 import 'package:bmi_/wedgit/weight_counter.dart';
 import 'package:bmi_/wedgit/ginder.dart';
-import 'package:bmi_/wedgit/slider.dart';
 import 'package:flutter/material.dart';
 import 'cores/colors.dart';
 
 class Bmindex extends StatefulWidget {
-  const Bmindex({super.key});
+  Bmindex({super.key});
 
   @override
   State<Bmindex> createState() => _BmindexState();
 }
 
 class _BmindexState extends State<Bmindex> {
-  
-  int weightC =90;
-  double heightt = 100;
+  int w = 0;
+  double h = 100;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +38,82 @@ class _BmindexState extends State<Bmindex> {
               SizedBox(
                 height: 10,
               ),
-              Expanded(child: SliderShape()),
+              Expanded(
+                  child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: appColors.containerColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            'Height',
+                            style: TextStyle(
+                              color: appColors.mainW,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                h.toInt().toString(),
+                                style: TextStyle(
+                                  color: appColors.mainW,
+                                  fontSize: 40,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text(
+                                'cm',
+                                style: TextStyle(
+                                  color: appColors.mainW,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              )
+                            ],
+                          ),
+                          Slider(
+                            value: h,
+                            onChanged: (value) {
+                              setState(() {
+                                h = value;
+                              });
+                            },
+                            max: 280,
+                            min: 70,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )),
               SizedBox(
                 height: 10,
               ),
               Expanded(
                   child: Row(
                 children: [
-                  WieghtCounter(),
+                  WieghtCounter(
+                    text: w,
+                    onPressedwi: () => setState(() {
+                      w++;
+                    }),
+                    onPressedwd: () => setState(() {
+                      w--;
+                    }),
+                  ),
                   SizedBox(
                     width: 10,
                   ),
@@ -69,7 +135,7 @@ class _BmindexState extends State<Bmindex> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    Result(res: result(weightC, heightt))));
+                                    Result(res: w / ((h * h)/10000))));
                       },
                       child: Text(
                         'Calculate',
@@ -88,8 +154,4 @@ class _BmindexState extends State<Bmindex> {
       ),
     );
   }
-}
-
-double result(int weightC, double heightt) {
-  return weightC / (heightt * heightt);
 }

@@ -1,17 +1,12 @@
 import 'package:bmi_/cores/colors.dart';
 import 'package:flutter/material.dart';
 
-class WieghtCounter extends StatefulWidget {
-  const WieghtCounter({
-    super.key,
-  });
+class WieghtCounter extends StatelessWidget {
+  WieghtCounter({super.key, required this.onPressedwi,required this.onPressedwd,required this.text});
+  Function() onPressedwi;
+  Function() onPressedwd;
+  int text;
 
-  @override
-  State<WieghtCounter> createState() => _WieghtCounterState();
-}
-
-class _WieghtCounterState extends State<WieghtCounter> {
-  int weightC = 0;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -34,7 +29,7 @@ class _WieghtCounterState extends State<WieghtCounter> {
               ),
             ),
             Text(
-              weightC.toString(),
+              text.toString(),
               style: TextStyle(
                 color: appColors.mainW,
                 fontSize: 40,
@@ -44,12 +39,7 @@ class _WieghtCounterState extends State<WieghtCounter> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      weightC++;
-                      
-                    });
-                  },
+                  onTap:onPressedwi,
                   child: Container(
                     width: 45,
                     height: 45,
@@ -68,12 +58,7 @@ class _WieghtCounterState extends State<WieghtCounter> {
                   width: 10,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      weightC--;
-                      
-                    });
-                  },
+                  onTap: onPressedwd,
                   child: Container(
                     width: 45,
                     height: 45,

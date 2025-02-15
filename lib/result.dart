@@ -1,9 +1,12 @@
+
+
 import 'package:bmi_/bmindex.dart';
 import 'package:bmi_/cores/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Result extends StatelessWidget {
-  const Result({super.key,required this.res});
+  const Result({super.key, required this.res});
 
   final double res;
 
@@ -52,36 +55,48 @@ class Result extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
-                            
                             children: [
-                              SizedBox(height: 40,),
-                              Text('NORMAL',style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20
-                              ),),
-                              SizedBox(height: 150,),
-                            Text(
-                            res.toString(),
-                            style: TextStyle(
-                              color: appColors.mainW,
-                              fontSize: 70,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 150,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('your work weight is absolutely normal,',style: TextStyle(
-                            color: appColors.mainW,
-                            
-                          ),),
-                          Text('Good job!💪',style: TextStyle(
-                            color: appColors.mainW,))
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Text(
+                                'Normal',
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20),
+                              ),
+                              SizedBox(
+                                height: 150,
+                              ),
+                              Text(
+                                res.toInt().toString(),
+                                style: TextStyle(
+                                  color: appColors.mainW,
+                                  fontSize: 70,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 150,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'your work weight is absolutely normal,',
+                                    style: TextStyle(
+                                      color: appColors.mainW,
+                                    ),
+                                  ),
+                                  Text('Good job!💪',
+                                      style: TextStyle(
+                                        color: appColors.mainW,
+                                      ))
+                                ],
+                              )
                             ],
-                          )
-                          ],),
+                          ),
                         )
                       ],
                     ),
@@ -118,3 +133,5 @@ class Result extends StatelessWidget {
     );
   }
 }
+
+
